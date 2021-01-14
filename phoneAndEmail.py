@@ -29,4 +29,9 @@ for groups in phoneRegex.findall(text):
 for groups in emailRegex.findall(text):
     matches.append(groups[0])
 
-#TODO: скопировать результаты в буфер обмена
+if len(matches) > 0:
+    pyperclip.copy('\n'.join(matches))
+    print('Скопированно в буфер обмена:')
+    print('\n'.join(matches))
+else:
+    print('Телефонные номера и адреса электронной почты не обнаружены.')
