@@ -19,6 +19,14 @@ emailRegex = re.compile(r'''(
     (\.[a-zA-Z]{2,4})   # остальная часть адреса
     )''', re.VERBOSE)
 
-#TODO: найти соответствия в тексте, содержащемя в буфере обмена
+text = str(pyperclip.paste())
+matches = []
+for groups in phoneRegex.findall(text):
+    phoneNum = '-'.join([groups[1], groups[3], groups[5]])
+    if groups[8] != '':
+        phoneNum += ' x' + groups[8]
+    matches.append(phoneNum)
+for groups in emailRegex.findall(text):
+    matches.append(groups[0])
 
 #TODO: скопировать результаты в буфер обмена
